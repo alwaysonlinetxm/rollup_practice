@@ -1,0 +1,26 @@
+{
+  "env": {
+    "rollup": {
+      "presets": [
+        [ "env" , {
+          "modules": false,
+        }],
+        "stage-0",
+        "react"
+      ],
+      "plugins": [
+        "external-helpers"
+      ]
+    },
+    "webpack": {
+      "presets": [
+        "env",
+        "react",
+        "stage-0"
+      ],
+      "plugins": [
+        "transform-runtime"
+      ]
+    }
+  }
+}

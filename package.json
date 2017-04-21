@@ -1,0 +1,43 @@
+{
+  "name": "rollup_practice",
+  "version": "1.0.0",
+  "description": "a comparation between webpack and rollup",
+  "repository": "https://github.com/alwaysonlinetxm/rollup_practice.git",
+  "author": "alwaysonlinetxm",
+  "license": "MIT",
+  "scripts": {
+    "rollup": "BABEL_ENV=rollup rollup -c -w",
+    "rollup_build": "NODE_ENV=production BABEL_ENV=rollup rollup -c",
+    "webpack": "BABEL_ENV=webpack webpack -w -d --progress",
+    "webpack_build": "NODE_ENV=production BABEL_ENV=webpack webpack --progress -p --bail"
+  },
+  "devDependencies": {
+    "babel-loader": "^6.4.1",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "cssnano": "^3.10.0",
+    "node-sass": "^4.5.2",
+    "postcss-modules": "^0.6.4",
+    "postcss-px2rem": "^0.3.0",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-filesize": "^1.2.1",
+    "rollup-plugin-hash": "^1.2.0",
+    "rollup-plugin-jsx": "^1.0.3",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-postcss": "^0.4.1",
+    "rollup-plugin-progress": "^0.2.1",
+    "rollup-plugin-replace": "^1.1.1",
+    "rollup-plugin-serve": "^0.3.0",
+    "rollup-plugin-uglify": "^1.0.1",
+    "rollup-watch": "^3.2.2",
+    "webpack": "^2.4.1"
+  },
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  }
+}
