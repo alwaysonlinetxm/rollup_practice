@@ -1,7 +1,11 @@
 .root {
-  font-size: 30px; /*px*/
+  font-size: 60px; /*px*/
 
   & .text {
     color: #f00;
+  }
+
+  & .img {
+    width: 200px;
   }
 }

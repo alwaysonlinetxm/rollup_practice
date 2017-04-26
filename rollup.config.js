@@ -7,6 +7,7 @@ import uglify from 'rollup-plugin-uglify';
 import hash from 'rollup-plugin-hash';
 import progress from 'rollup-plugin-progress';
 import replace from 'rollup-plugin-replace';
+import image from 'rollup-plugin-img';
 import postcss from 'rollup-plugin-postcss';
 import sass from 'node-sass';
 import cssnano from 'cssnano';
@@ -17,7 +18,6 @@ const isProd = process.env.NODE_ENV === 'production';
 const distPath = isProd ? 'dist' : 'static';
 const cssExportMap = {};
 const plugins =  [
-
   resolve(), // for support external module in node_modules
   commonjs({ // for support not es2015 module
     namedExports: {
@@ -27,7 +27,8 @@ const plugins =  [
   filesize(), // show the filesize in cli
   // hash({ // create file with hash in filename
   //   dest: `${distPath}/r-bundle-[hash].js`, // which to decide the name of the output
-  //   replace: true // will delete the output without hash
+  //   replace: true, // will delete the output without hash
+  //   manifest: true
   // }),
   progress(), // show the progress of build
   replace({
@@ -52,7 +53,13 @@ const plugins =  [
     extensions: ['.css', '.scss']  // default value
     // parser: sugarss
   }), // must before babel
+  image({
+    output: `${distPath}/images`,
+    extensions: /\.(png|jpg|jpeg|gif|svg)$/,
+    exclude: 'node_modules/**'
+  }),
   babel({
+    include: ['*.js', '*/**.js'],
     exclude: 'node_modules/**'
   })
 ];
