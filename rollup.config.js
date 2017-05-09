@@ -14,6 +14,8 @@ import cssnano from 'cssnano';
 import postcssModules from 'postcss-modules';
 import px2rem from 'postcss-px2rem';
 
+import html from './html';
+
 const isProd = process.env.NODE_ENV === 'production';
 const distPath = isProd ? 'dist' : 'static';
 const cssExportMap = {};
@@ -55,13 +57,13 @@ const plugins =  [
   }), // must before babel
   image({
     output: `${distPath}/images`,
-    extensions: /\.(png|jpg|jpeg|gif|svg)$/,
     exclude: 'node_modules/**'
   }),
   babel({
     include: ['*.js', '*/**.js'],
     exclude: 'node_modules/**'
-  })
+  }),
+  html()
 ];
 
 if (isProd) {

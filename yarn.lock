@@ -3842,9 +3842,9 @@ rollup-plugin-hash@^1.2.0:
   dependencies:
     hasha "^2.2.0"
 
-rollup-plugin-img@^1.0.2:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-img/-/rollup-plugin-img-1.0.3.tgz#0d06195a345d90fb460a17f0dbe3459e895c9c35"
+rollup-plugin-img@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-img/-/rollup-plugin-img-1.0.4.tgz#d34218d5bbd463f83231c9ddb7d293efe3bebf9e"
   dependencies:
     rollup-pluginutils "^2.0.1"
 
