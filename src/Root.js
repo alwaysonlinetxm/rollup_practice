@@ -6,7 +6,7 @@ import quesImg from './question.png';
 
 export default class Root extends PureComponent {
   componentWillMount() {
-    console.log('---- will mount ----');
+    console.log('---- will mount ----', boxImg);
   }
 
   render() {

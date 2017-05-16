@@ -4,17 +4,15 @@ import babel from 'rollup-plugin-babel';
 import serve from 'rollup-plugin-serve';
 import filesize from 'rollup-plugin-filesize';
 import uglify from 'rollup-plugin-uglify';
-import hash from 'rollup-plugin-hash';
 import progress from 'rollup-plugin-progress';
 import replace from 'rollup-plugin-replace';
 import image from 'rollup-plugin-img';
+import html from 'rollup-plugin-fill-html';
 import postcss from 'rollup-plugin-postcss';
 import sass from 'node-sass';
 import cssnano from 'cssnano';
 import postcssModules from 'postcss-modules';
 import px2rem from 'postcss-px2rem';
-
-import html from './html';
 
 const isProd = process.env.NODE_ENV === 'production';
 const distPath = isProd ? 'dist' : 'static';
@@ -27,11 +25,6 @@ const plugins =  [
     }
   }),
   filesize(), // show the filesize in cli
-  // hash({ // create file with hash in filename
-  //   dest: `${distPath}/r-bundle-[hash].js`, // which to decide the name of the output
-  //   replace: true, // will delete the output without hash
-  //   manifest: true
-  // }),
   progress(), // show the progress of build
   replace({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development') // for react
@@ -63,7 +56,10 @@ const plugins =  [
     include: ['*.js', '*/**.js'],
     exclude: 'node_modules/**'
   }),
-  html()
+  html({
+    template: 'src/index.html',
+    filename: 'index.html'
+  })
 ];
 
 if (isProd) {
@@ -96,7 +92,7 @@ if (isProd) {
     // Show server address in console (default: true)
     verbose: false,
     // Folder to serve files from
-    // contentBase: distPath,
+    contentBase: distPath,
     // Set to true to return index.html instead of 404
     historyApiFallback: false,
     port: 8080
@@ -108,6 +104,6 @@ export default {
   moduleName: 'test', // just for UMD/IIFE
   sourceMap: !isProd,
   format: 'iife',
-  dest: `${distPath}/r-bundle.js`, // it make no sense when use hash plugin
+  dest: `${distPath}/r-bundle-[hash].js`, // it make no sense when use hash plugin
   plugins
 };
