@@ -9,7 +9,7 @@ import replace from 'rollup-plugin-replace';
 import image from 'rollup-plugin-img';
 import html from 'rollup-plugin-fill-html';
 import postcss from 'rollup-plugin-postcss';
-import remove from 'rollup-plugin-clean';
+import clean from 'rollup-plugin-clean';
 import sass from 'node-sass';
 import cssnano from 'cssnano';
 import postcssModules from 'postcss-modules';
@@ -49,7 +49,7 @@ const plugins =  [
     extensions: ['.css', '.scss']  // default value
     // parser: sugarss
   }), // must before babel
-  remove(),
+  clean(),
   image({
     output: `${distPath}/images`,
     exclude: 'node_modules/**'
