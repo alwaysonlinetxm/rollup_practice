@@ -10,15 +10,21 @@ import image from 'rollup-plugin-img';
 import html from 'rollup-plugin-fill-html';
 import postcss from 'rollup-plugin-postcss';
 import clean from 'rollup-plugin-clean';
+import eslint from 'rollup-plugin-eslint';
 import sass from 'node-sass';
 import cssnano from 'cssnano';
 import postcssModules from 'postcss-modules';
 import px2rem from 'postcss-px2rem';
+import autoprefixer from 'autoprefixer';
 
 const isProd = process.env.NODE_ENV === 'production';
 const distPath = isProd ? 'dist' : 'static';
 const cssExportMap = {};
 const plugins =  [
+  eslint({
+    throwOnError: true,
+    exclude: ['node_modules/**', '**.scss']
+  }),
   resolve(), // for support external module in node_modules
   commonjs({ // for support not es2015 module
     namedExports: {
@@ -38,6 +44,9 @@ const plugins =  [
         }
       }),
       px2rem({ remPrecision: 8 }), // must after postcssModules
+      autoprefixer({
+        remove: false
+      }),
       cssnano() // Minimize css
     ],
     getExport (id) {
@@ -55,7 +64,6 @@ const plugins =  [
     exclude: 'node_modules/**'
   }),
   babel({
-    include: ['*.js', '*/**.js'],
     exclude: 'node_modules/**'
   }),
   html({
